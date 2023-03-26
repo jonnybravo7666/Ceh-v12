@@ -1,0 +1,371 @@
+Footprinting & Reconnaissance
+
+o   Reconnaissance has three parts or phases, which are:
+
+1. Footprinting: It is about collecting information about an organization passively.
+2. Scanning: It uses active reconnaissance methods, such as nmap scanning to extract information about networks and systems.
+3. Enumeration: After the first two, Footprinting and Scanning are complete, you can use the information to find the area that you want to attack.
+
+Footprinting is the first step of any attack on information systems in which a attacker collects information about a traget network to identify various ways to intrude into the system
+- Footprinting is a method of collecting information about a target from all available sources. The information can be of different types, such as:
+  - IP address
+  - Email address
+  - Geolocations
+  - Domain and subdomain names
+  - Contact information
+
+o   Reconnaissance or Footprinting can either be active or passive.
+
+Active
+- Using the active reconnaissance method, you directly interact with the system. For example, you can execute a nmap command to collect information about open ports.
+- Active footprinting requires more preparation than passive footprinting, as it may leave traces that may alert the target organization
+
+Active Reconaissance can include the following methods:
+  - Performing IP or Port scanning
+  - Perform operating system scanning
+  - Spider the public Webpages
+  - Perform fuzzing
+  - Conduct Social Engineering
+
+
+Passive
+- On the other hand, passive reconnaissance is the opposite of active reconnaissance. You do not interact with the system. Rather, you use various methods, such as a Web search, to find the information about a target.
+- it is ( technically difficult ) as active traffic is not sent to the target organization from a host or anonymous host or services over the internet 
+- We can only collect archived and stored information about the target using search engines ,social networking sites
+
+Passive reconnaissance can use the following methods:
+  - Search the Whois database
+  - Search Google or any search engine
+  - Extract DNS information
+  - Review blogs, public forums, and Websites
+  - Search breach databases and DarkWeb about a target
+
+- The major objectives of footprinting include collecting the network information, system information, and organizational information of the target
+
+o    Some of the tools is use to do footprinting 
+
+  - Whois — Queries for domain names
+  - Nslookup — Queries DNS
+  - FOCA — Enumeration for users, files, folders, and OS information
+  - theHarvester — Information gathering for an Email address, subdomains, hostnames, banners
+  - Shodan — Information search engine using metadata
+  - Maltego — Information gathering
+  - Recon-ng — Web reconnaissance
+  - Censys — Search engine for information about devices on the Internet
+
+- To collect information, an attacker can use a variety of tools. An attacker can use various techniques as part of the Footprinting methodology to collect information. These techniques are:
+  - Search Engines Footprinting
+  - Web Services Footprinting
+  - Social Networking Sites Footprinting
+  - Website Footprinting
+  - Email Footprinting
+  - Whois Footprinting
+  - DNS Footprinting
+  - Network Footprinting
+  - Social Engineering Footprinting
+
+Exercise no.1 
+
+Perform footprinting through search engines:
+
+- Major search engines : Google, Bing, Yahoo!, DuckDuckGo
+
+- Search engines can provide a wealth of information about the target organizations. You can simply type the name of the organization in the search field. The search results can provide information, such as:
+  - The physical location of the organization’s offices
+  - Contact information
+  - Email addresses
+  - Employee names
+
+
+- An attacker can use all this information to initiate an attack. For example, an attacker can initiate a social engineering attack using contact information, telephone, or mobile numbers.
+
+Task 1 — Footprint Using Google Advanced Search Operators
+
+- Search engines, such as Google, provide advanced search operators to retrieve information that would have been not easily retrievable from the search engine. With the help of search operators, you can narrow down your search and get the information you need.
+- In this task, you will learn to use some of the key Google Advanced Search Operators.
+
+- intitle:password 
+- site:www.google.com    
+- <object> filetype:pdf
+- allinurl: google career ( query returns only pages containing the words "google" and "career" in the URL )
+- Anti-virus inanchor: Norton  ( query returns only pages with anchor text on links to the pages containing the word "norton" and the page containing the word "anti-virus")
+- link: www.googleguide.com   (finds pages that point to google guide's home page)
+- related: www.certifiedhacker.com    (query provides the results page with websites similar to certifiedhacker.com
+
+This are some major google operators
+
+You can combine the operator to get better result, such as
+
+- intitle:amazon -inurl: amazon -intext:"products"
+- intitle:password   -site:www.google.com 
+- intitle: password -site: www.instagram.com -link: instagram.com -related: instagram
+
+
+Task 2 — Gather information from video search engines
+
+You can also collect some information from videos by using video search engines, an attacker can further analyze the video content to gather hidden information such as the time/date and thumbnail of the video, by using video analysis tools such as Youtube metadata, Youtube dataviewer and EZGif 
+( https://mattw.io/youtube-metadata/ )
+
+
+Task 3 — Gather infromation from File Transfer Protocol (FTP) search engines
+
+- FTP search engines are used to search for files located on FTP servers that contain valuable information regarding the target organization. Many industries, institutions, companies, and universities use FTP servers to store large file archives and other software shared among their employees.
+- Although FTP servers are usually protected with passwords, many servers are left unsecured and can be accessed directly through web browsers.
+- Using FTP search engines such as NAPALM FTP Indexer and Globalfilesearch.com, attackers can search for critical files and directories containing valuable information and other confidential information.
+
+( https://www.searchftps.net/ )
+
+
+Task 4 — Gather infromation from IoT search engines
+
+- With the help of loT search engines such as Shodan, Censys, and Thingful, attackers can obtain information such as the manufacturer details, geographical location, IP address, hostname, and open ports of the target loT device. Using this information, the attacker can establish a back door to the loT devices and gain access to them to launch further attacks
+
+( https://www.shodan.io/ )
+
+
+Exercise no.2
+
+Perform Footprinting Through Web Services 
+
+- Attackers can use Web services to search for information about a target, such as people's search services and professional sites like LinkedIn.
+- An attacker can use various web services, such as job sites, social networking sites, or people search services to find the information required to set the base for an attack.
+- Once an attacker captures the information, they can set the tone of the attack — the type of attack they need to conduct.
+
+Task 1 — Finding domains and subdomains.
+
+- A domain is essentially the address of your website on the internet. It consists of your brand’s or business’s name. A subdomain operates within the main domain and is used to identify a certain section of the website.
+
+- Advanced google search operator to identify all the subdomains of the target.
+site:google.com -inurl:www
+
+- Netcraft   "https://www.netcraft.com"
+- Sublist3r  "https://github.com"   ( it enumerates sabdomains using many search engines such as Google, Yahoo, Bing and Ask. It also enumerates subdomains using Netcraft, VirusTotal, ThreatCrowd, dnsdumpster, and ReverseDNS
+- Pentest-Tools    "https://pentest-tools.com"      (ip addresses, network infromation and their HTTP servers)
+
+
+Exercise no.3
+
+Perform Footprinting Through social networking sites
+
+- Social networking services such as facebook, twitter, and Linkedin, provide useful information about the individual that helps the attacker in performing social engineering and other attacks
+- It can provide critical information about a person or an organization, including location, emails, websites, blogs, contacts, important dates, etc. some online services, such as Spokeo, Intelius and peekyou.
+
+Task 1 — Gathering infromation from job site
+
+Attackers can gather valuble information about the OS, Software versions, Company's infrastructure details, and Database schema
+Many organizations websites provide recuiting infromation on a job posting page that, in turn, reveals hardware and software infromation, network-related infromation, and technologies used by the companys (e.g firewalls, internal server type, OS used)
+- linkedin, naukri, insternshal, job-dekho, indeed, times-of-job, career-builder
+
+- Attackers use theHarvester tool to perform enumeration on Linkedin and find employees of the target company along with their job titles 
+- theHarvester     " http://github.com | www.egde-security.com "
+	theHravester -d microsoft -l 200 -b linkedin    ( -d = domain or company name, -l no. of result, -b data source )
+
+
+Task 2 — Gathering information from Deep and Dark Web.
+
+Deep web : it consists of web pages and contents that are hidden and unindexed and cannot be located using normal web browers and search engines
+Deep web or darknet : it is the subset of the deep web that enables anyone to navigate anonymously without being traced
+- it can be accessed by browsers, such as TOR browser, Freenet, GNUnet, I2P, and retroshare
+- Attackers use deep and dark web searching tools, such as Tor browser and ExoneraTor to gather confidential information about the target, including cardit card details, passport information, identification card details, medical records, social media aounts, social secrity numbers (SSNs)etc
+
+TOR Browser : it is used to access the deep and dark web where it acts as a default VPN for the user and bounces the network IP address through several servers before interacting with the web 
+
+( https://www.torproject.org )
+
+Exercise no.4 
+
+Perform Footprinting Through Website
+
+- Website footprinting refers to the monitoring and analysis of the target organization's website for information
+- Browsing the target website may provide the following information:
+  -  Software used and its version
+  - Operating system used and its scripting platform
+  - Sub-directories and parameters
+  - Filename, path, database field name, or query
+  - Technologies used
+  - Contact and CMS details
+
+- Attackers use Burp Suite, Zaproxy, Wappalyzer, CentralOps, Website Informer, etc. to view headers that provide the following information:
+  - Connection status and content-type
+  - Accept-Ranges and Last-Modified
+  - Web server in use and its version
+
+o    Examinin the Html source code may provide 
+ - Comments present in the source code
+ - Contact Details of the web developer or admin
+ - File System structure and script type
+
+o    Examining cookies may provide 
+ - Software in use and its behavior
+ - Scripting platforms used
+
+Task 1 —  Gathering infromation from Burp Suite
+
+Burp Suite is an integrated platform for performing security testing of web applications, with Burp Proxy allowing attackers to intercept requests and responses.
+
+( https://portswigger.net )
+
+
+Task 2 —  Gathering infromation by Mirroring Entire Website
+
+- Mirroring an entire website onto a local system enables an attacker to browse website offline; it also assists in finding directory structure and other valuable information from the mirrored copy without sending multiple requests to web server
+- Web mirroring tools, such as HTTrack Web Site Copier, and Cyotek WebCopy, allow you to download a website to a local directory, recursively building all directories, HTML, images, flash, videos, and other files from the server to your computer
+
+Website Mirroring Tool: HTTrack Web Site Copier      " ( https://www.httrack.com" )
+
+
+Task 3 —  Gathering infromation from archive.org
+
+- Interent Archive's Wayback Machine allows one to visit archived versions of websites
+( "https://archive.org" )
+
+Exercise no.5
+
+Perform Footprinting Through Email 
+
+- Email tracking is used to monitor the delivery of emails to an intended recipient
+- attackers track emails to gather infromation about a traget recipient, such as IP addresses, geolocation, Browser and OS details, to Build a hacking strategy and perform social enginerring and other attacks
+
+Task 1 — Gathering infromation from Email Tracking Tools
+
+- Email tracking tools, such as eMailtrackerpro, Infoga, and Mailtrack allow an attacker to track an email and extract information, such as sender identity, mail server, sender's IP address, and Loaction
+
+eMailTrackerPro : "http://www.emailtrackerpro.com"
+
+
+Exercise no.6
+
+Perform Footprinting Through Whois
+
+Whois Lookup : Whois databases are maintained by regional internet registries and contain personal information of domain owners
+ - Whois query returns 
+  - Domain name details
+  - Contact details of domain owners
+  - Domain name servers
+  - NetRange
+  - When a domain was created
+  - Expiry records
+  - Last updated record
+
+Two types of data models exist to store and lookup Whois information:
+ - Thick Whois - Stores the complete Whois information from all the registrars for a particular set of data.
+ - Thin Whois - Stores only the name of the Whois server of the registrar of a domain, which in turn holds complete details on the data being looked up.
+
+Regional Internet Registries (RIRs)
+
+The RIRS include the following:
+- American Registry for Internet Numbers (ARIN) (https://www.arin.net)
+- African Network Information Center (AFRINIC) (https://www.afrinic.net)
+- Asia Pacific Network Information Center (APNIC) (https://www.apnic.net)
+- Réseaux IP Européens Network Coordination Centre (RIPE) (https://www.ripe.net)
+- Latin American and Caribbean Network Information Center (LACNIC) (https://www.lacnic.net)
+
+Task 1 — Gathering infromation from Whois lookup
+
+( http://whois.domaintools.com )
+
+
+Exercise no.7
+
+Perform Footprinting Through DNS
+
+- Attackers can gather DNS information to determine key hosts in the network and can perform social engineering attacks
+- Attackers query DNS servers using DNS interrogation tools, such as SecurityTrails, NSLOOKUP, and DNS Records, to retrieve the record structure that contains information about the target DNS
+
+Record Type         Description
+A               Points to a host's IP address
+MX              Points to domain's mail server
+NS              Points to host's name server
+CNAME           Canonical naming allows aliases to a host
+SOA             Indicate authority for a domain
+SRV             Service records
+PTR             Maps IP address to a hostname
+RP              Responsible person
+HINFO           Host information record includes CPU type and OS
+TXT             Unstructured text records
+
+Task 1 — Gathering infromation from DNSdumpster
+
+( www.dnsdumpster.com )
+
+
+Task 2 — Gathering infromation from SecurityTrails
+
+- SecurityTrails is an advanced DNS enumeration tool that creates a DNS map and enumerates existing subdomains using brute-force techniques.
+-  It can enumerate both current and historical DNS records such as A, AAAA, NS, MX, SOA, and TXT, which helps in building the DNS structure.
+
+( https://securitytrails.com/stats )
+
+
+Exercise no.7
+
+Perform Footprinting Through Network 
+
+- Network footprinting is a technique used to gather basic and important information about the target organization, such as what the organization does, who works there, and what type of work it does.
+- This information can be used to determine the network range of the target system, determine the subnet mask of the domain, trace the route between the system and target system, obtain private IP addresses, and identify the network topology, access control device, and OS used in the target network.
+- Improperly set-up DNS servers offer attackers a good chance of obtaining a list of internal machines in the network, and if an attacker traces a route to a machine, it could be possible to obtain the internal IP address of the gateway.
+
+- Obtaining private IP addresses can be useful to attackers. The Internet Assigned Numbers Authority (IANA) has reserved the following three blocks of IP address space for private internets: 10.0.0.0-10.255.255.255 (10/8 prefix), 172.16.0.0-172.31.255.255 (172.16/12 prefix), and 192.168.0.0-192.168.255.255 (192.168/16 prefix).
+
+Task 1 — Gathering infromation from Traceroute Tools
+
+Traceroute programs work on the concept of ICMP protocol and use the TTL field in the header of ICMP packets to discover the routers on the path to a target host
+
+- Windows Operating system by default uses ICMP traceroute
+( tracert < ip >)
+- Many devices in any network are generally configured to block ICMP traceroute messages. In this scenario, an attacker uses TCP or UDP traceroute, which is also known as Layer 4 traceroute.
+( tcptraceroute www.google.com )
+- like windows, liunx also has a built-in traceroute utility, but it uses the UDP protocol for tracing the route to the destination
+( traceroute www.google.com )
+
+
+Task 2 — Gathering infromation from Path Analyzer Pro 
+
+- It delivers network route tracing with performance tests, DNS, Whois, and network resolution to investigate network issues
+
+( www.pathanalyzer.com )
+
+
+
+Exercise no.8
+
+Perform Footprinting Through Social Engineering 
+
+- Social engineering is an art of exploiting human behaviour to extract confidential information
+- Social engineers depend on the fact that people are unaware of their valuable information and are careless about protecting it
+
+- Social engineering is a non-technical process in which an attacker misleads a person into providing confidential information, which can be used for malicious purposes such as gaining unauthorized access to the system, identity theft, industrial espionage, network intrusion, fraud, and more.
+ 
+- Social engineers attempt to gather
+  - Credit card details and social security number
+  - Usernames and passwords
+  - Security products in use
+  - Operating systems and software versions.
+  - Network layout information
+  - IP addresses and names of servers
+
+- Social engineering techniques include
+  - Eavesdropping
+  - Shoulder surfing
+  - Dumpster diving
+  - Impersonation
+
+Eavesdropping : Unauthorized listening of conversations or reading of messages
+- It is the interception of any form of communication, such as audio, video, or text
+
+Shoulder Surfing : Secretly observing the target to gather critical information, such as passwords, personal identification number, account numbers, and credit card information
+- Looking for treasure in someone else's trash
+
+Dumpster Diving : It involves the collection of phone bills, contact information, financial information, operations-related information, etc. from the target company's trash bins, printer trash bins, user desk for sticky notes, etc.
+
+Impersonation : Pretending to be a legitimate or authorized person and using the phone or other communication medium to mislead targets and trick them into revealing information
+
+o    Footprinting Countermeasures 
+
+- Restrict the employees' access to social networking sites from the organization's network
+- Configure web servers to avoid information leakage
+- Educate employees to use pseudonyms on blogs, groups, and forums
+- Do not reveal critical information in press releases, annual reports, product catalogues, etc.
+- Limit the amount of information published on a website or the Internet
+- Use footprinting techniques to discover and remove any sensitive information that is publicly available
+- Prevent search engines from caching a web page and use anonymous registration services

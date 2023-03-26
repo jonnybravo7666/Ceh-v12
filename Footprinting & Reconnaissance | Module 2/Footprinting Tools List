@@ -1,0 +1,117 @@
+Footprinting Tool List
+
+if you are preparing for Ceh exam you must know about this tools 
+i had list all the tools with Urls by category vise so you can download or rish that page easily 
+
+To collect information, an attacker can use a variety of tools. An attacker can use various techniques as part of the Footprinting methodology to collect information. These techniques are:
+  - Search Engines Footprinting
+  - Web Services Footprinting
+  - Social Networking Sites Footprinting
+  - Website Footprinting
+  - Email Footprinting
+  - Whois Footprinting
+  - DNS Footprinting
+  - Network Footprinting
+  - Social Engineering Footprinting
+
+Tools use in footprinting 
+ 
+o      Perfroming Footprinting through search engines
+
+- Google advance operator
+  - Google hacking Database (GHDB )
+    - "https://www.exploit-db.com/"
+  - "https://www.google.com/advanced_search"
+  - "https://www.google.com/advanced_image_search"
+  - "https://www.google.com/imghp"
+
+- Video search engines
+  - Youtube metadata ( https://mattw.io/youtube-metadata )
+  - " https://citizenevidence.amnestyusa.org/. "
+
+  - meta search engine ( https://www.startpage.com/ )
+
+- FTP search engine 
+  - NAPALM FTP Indexer ( https://www.searchftps.net/ )
+
+- IoT search engines 
+  - Shodan ( https://www.shodan.io )
+  - Censys ( https://censys.io )
+ 
+
+o     Perform Footprinting Through Web Services 
+
+  - Netcraft ( https://www.netcraft.com )
+  - Sublist3r ( https://github.com/aboul3la/Sublist3r )
+  - Pentest-tool ( https://pentest-tools.com )
+
+o       People search on social networking sites
+
+  - Spokeo ( https://www.spokeo.com )
+  - Sherlock ( https://github.com/sherlock-project/sherlock )
+
+o       Website footprinting 
+
+  - Burp Suite ( https://portswigger.net/burp/communitydownload )
+  - Zaproxy ( https://www.zaproxy.org/ )
+  - Wappalyzer extenstion 
+  - CentralOps ( https://centralops.net/co/ )
+  - Website Informer ( https://website.informer.com/ )
+
+o    Website Footprinting using web spiders
+
+  - Web Data Extractor   ( http://www.webextractor.com )
+  - WebScrab ( https://github.com/OWASP/OWASP-WebScarab )
+
+o    Mirroring Entire Website
+
+  - HTTrack Web Site Copier ( https://www.httrack.com )
+
+o     Extracting Website Information
+
+  - Interent Archive's Wayback Machine ( https://archive.org )
+  - Photon ( git clone https://github.com/s0md3v/Photon.git )
+    - photon.py -u <URL of the target website> -l 3  -t 200 --wayback
+    - python photon.py -u <URL of the target website> -l 3 -t 200 -only-urls
+   - Cewl ( https://github.com/digininja/CeWL )
+
+o    Email footprinting 
+ 
+   - eMailtrackerpro ( https://emailtrackerpro.en.softonic.com/ )
+   - Infoga ( https://github.com/m4ll0k/Infoga )
+     - python infoga.py --domain microsoft.com --source all --breach -v 2 --report  ../microsoft.txt
+     - python infoga.py --info <email> --breach -v 3 --report ../<filename>.txt
+   - Mailtrack ( https://mailtrack.io/en/ )
+
+o     Whois Footprinting
+
+   - Whois lookup result ( http://whois.domaintools.com )
+   - whois analyzer pro ( https://www.whois.com/whois )
+
+o    DNS Footprinting
+
+    - SecurityTrails ( https://securitytrails.com/dns-trails )
+    - DNSdumpster.com ( https://dnsdumpster.com/ )
+    - DNSRecon : ( https://github.com/darkoperator/dnsrecon )
+    - Reverse lookup ( https://mxtoolbox.com/ReverseLookup.aspx )
+
+o   Network Footprinting
+
+   - tracert < ip >  |  tracert
+   - Path Analyzer Pro :  ( www.pathanalyzer.com )
+   - VisualRoute : ( visualroute.com )
+
+some tools with extra features you can you them to in footprinting
+
+   - Maltego ( https://www.maltego.com/downloads/ )
+   - Recon-ng ( https://github.com/lanmaster53/recon-ng )
+   - FOCA ( https://github.com/ElevenPaths/FOCA )
+   - OSRFramework ( https://github.com/i3visio/osrframework )
+   - OSINT Framework ( https://osintframework.com/ )
+   - Recon-Dog ( https://github.com/s0md3v/ReconDog )
+   - Bill Cipher ( https://github.com/bahatiphill/BillCipher )
+   - Spyse ( https://pentestlab.blog/2020/06/15/spyse-a-cyber-security-search-engine/ )
+   - Theharvester ( https://github.com/laramies/theHarvester )
+   - whois domain tools (https://whois.domaintools.com/ )
+   - Nslookup ( https://www.nslookup.io/ )
+

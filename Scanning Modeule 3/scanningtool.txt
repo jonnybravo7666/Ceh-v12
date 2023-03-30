@@ -1,0 +1,148 @@
+Network Scanning Tools:
+
+Scanning Tools :
+
+Nmap  "https://nmap.org"  ( Network Mapper )
+nmap <options> <Target IP address >
+- Network administrators can use Nmap for inventorying a network, managing service upgrade schedules, and monitoring host or service uptime 
+- Attackers use Nmap to extract information such as live hosts on the network, open ports, services (application name and version), types of packet filters/ firewalls, as well as operating systems and versions used
+
+<image>
+
+Hping3   "www.hping.org" 
+hping3 <options> <target ip address>
+- Command line network scanning and packet crafting tool for thr TCP/IP protocol
+- It can be used for network security auditing, firewall testing, munal path MTU discovery, advanced traceroute, 
+remote OS fingerprinting, remote uptime guessing, TCP/IP stacks suditing, etc.
+
+<image>
+
+Metasploit : "www.metasploit.com"
+- Metasploit is an open-source project that provides the infrastructure, content, and tools to perform penetration tests and extensive security auditing
+
+<image>
+
+NetScanTools Pro :    " www.netscantools.com"
+NetScan Tools Pro assists attackers in automatically or manually listing IPv4/IPv6 addresses, hostnames, domain names, and URLS
+
+<image>
+
+
+Scanning Tools for Mobile :
+
+ - IP Scanner   "https://10base-t.com"
+IP Scanner for iOS scans your local area network to determine the identity of all its active machines and Internet devices. It allows attackers to perform network scanning activities along with ping and port scans.
+
+<image>
+
+ - Fing     " https://www.fing.io"
+
+Fing is a mobile app for Android and iOS that scans and provides complete network information, such as IP address, MAC address, device vendor, and ISP location. It allows attackers to discover all devices connected to a Wi-Fi network along with their IP and MAC address as well as the name of the vendor/device manufacturer. It also allows attackers to perform network pinging and traceroute activities through specific ports such as SSH, FTP, NetBIOS, etc.
+
+<image>
+
+ - Network Scanner     "https://play.google.com"
+
+Network Scanner is an Android mobile application that allows attackers to identify the active hosts in the range of possible addresses in a network. It also displays IP addresses, MAC addresses, host names, and vendor details of all the available devices in the network. This tool also allows attackers to port scan targets with specific port numbers.
+
+<image>
+
+Ping Sweep Tools :  	"https://www.angruip.org
+
+Angry IP scanner : Angry IP scanner pings each ip address to check if any of these addresses are live. Then it optionally resloves hostnames, determines the MAC address, scans ports, etc
+
+Some additional ping sweep tools that an attacker uses to determine live hosts on the target network are listed below:
+
+<image>
+
+SolarWinds Engineer's Toolset (https://www.solarwinds.com)
+NetScanTools Pro (https://www.netscantools.com)
+Colasoft Ping Tool (https://www.colasoft.com)
+Visual Ping Tester (http://www.pingtester.net)
+OpUtils (https://www.manageengine.com)
+
+
+OS Discovery using Wireshark     "https://www.wireshark.org"
+
+Identify the target OS by comparing the TTL and TCP window size fields in the first captured TCP packet to determine the OS that generated the response.
+
+<image>
+
+Nmap     "https://nmap.org"
+
+Attackers can use various tools to identify the OS running on a target machine, such as Nmap and Zenmap. Zenmap uses the -o option to display OS details.
+
+Unicornscan     "https://sourceforge.net"
+
+Unicornscan uses the syntax #unicornscan to identify the OS of a target machine by observing the TTL values.
+
+Creating Custom Packets by using Packet Crafting Tools 
+
+Colasoft Packet Builder         "https://www.colasoft.com"
+
+- Colasoft Packet Builder is a tool that allows an attacker to create custom network packets and help security professionals assess the network. It allows the attacker to select a TCP packet from templates and change parameters in the decoder, hexadecimal, or ASCII editor. It also supports saving packets to files and sending packets to the network.
+
+< image>
+
+Proxy Tools :
+
+Proxy tools are intended to allow users to surf the Internet anonymously by keeping their IP hidden through a chain of SOCKS or HTTP proxies. These tools can also act as HTTP, mail, FTP, SOCKS, news, telnet, and HTTPS proxy servers.
+
+Proxy Switcher
+
+Source: https://www.proxyswitcher.com
+
+Proxy Switcher allows attackers to surf the Internet anonymously without disclosing their IP address. It also helps attackers to access various blocked sites in the organization. In addition, it avoids all sorts of limitations imposed by target sites.
+
+CyberGhost VPN
+
+Source: https://www.cyberghostvpn.com
+
+CyberGhost VPN hides the attacker's IP and replaces it with a selected IP, allowing him or her to surf anonymously and access blocked or censored content. It encrypts the connection and does not keep logs, thus securing data.
+
+Proxy Tools for Mobile :
+
+Shadowsocks
+
+Source: https://shadowsocks.org
+
+Shadowsocks is a high-performance, cross-platform secured socks5 proxy that uses asynchronous I/O and event-driven programming. It is suitable for low-end boxes and embedded devices and supports open-source implementations in python, node.js, golang, C#, and pure C.
+
+Anonymizer tools :
+
+- use various techniques such as SSH, VPN, and HTTP proxies, which allow access to blocked or censored content on the Internet with advertisements omitted.
+
+Whonix 
+
+Discussed below are various ananymizers for mobile devices 
+
+Orbot 
+
+Psiphon Pro
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,317 @@
+Port Scanning Techniques
+
+<image>
+
+Port scanning techniques are further categorized as described below. this categorization is based on the type pf protocol used for communication in the network
+
+TCP Scanning:
+Open TCP Scanning Methods
+  - TCP Connect/Full-open Scan
+Stealth TCp Scanning Methods
+  - Half-open Scan
+  - Inverse TCP Flag Scan 
+    - Xmas Scan
+    - FIN Scan
+    - Null Scan
+    - Maimon Scan 
+  - ACK Flag Probe Scan
+    - TTL-Based Scan
+    - Window-Based Scan
+Third Party and Spoofed TCP Scanning Methods
+  - IDLE/IP ID Header Scan
+
+UDP Scanning :
+  - UDP Scanning 
+
+SCTP SCanning:
+  - SCTP INIt Scanning
+  - SCTP COOKIE/ECHO Scanning
+
+SSDP Scanning :
+  - SSDP and List Scanning
+
+IPv6 Scanning :
+  - IPv6 Scanning 
+
+TCP Connect/Full-Open Scan :
+TCP Connect/Full Open Scan is a reliable form of TCP scanning that attempts to open a connection to every port of interest on the target machine. It completes a three-way handshake with the target machine, then sends an RST packet to end the connection.
+
+<image>
+
+Making a separate connect () call for every targeted port in a linear manner would take a long time over a slow connection.
+
+<image>
+
+The drawback of this type of scan is that it is easily detectable and filterable. the logs in the target system will dislose the connection. Such scanning does not require superuser privileges
+
+Stealth Scan (Half-Open Scan) :
+
+The stealth scan involves resetting the TCP connection between the client and the server abruptly before completion of the three-way handshake signals, hence making the connection half-open.
+A stealth scan sends a single frame to a TCP port without any TCP handshaking or additional packet transfers.
+TCP SYN or half-open scanning is a stealth method of port scanning.
+
+<image>
+
+Attackers use stealth scanning techniques to bypass firewall rules and logging mechanisms, and they hide themselves as usual under network traffic.
+
+<image>
+
+Inverse TCP Flag Scan :
+
+Attackers send TCP probe packets with a TCP flag (FIN, URG, PSH) set or with no flags.
+Security mechanisms such as firewalls and IDS detect the SYN packets sent to the sensitive ports of the targeted hosts.
+Firewalls and IDS detect SYN packets, but  the probe packets enabled with TCP flags can pass through filters undetected, depending on the security mechanisms installed.
+
+<image>
+
+Attackers use RST/ACK packets to send TCP probe packets to target ports with various TCP flags set.
+
+Common flag configurations used for a probe packet include:
+
+- A FIN probe with the FIN TCP flag set
+- An Xmas probe with the FIN, URG, and PUSH TCP flags set
+- A NULL probe with no TCP flags set
+- A SYN/ACK probe
+
+Windows OSs cannot see RST/ACK response when connected to closed ports, but this technique is effective when used with UNIX-based OSS.
+
+Advantages :
+- Avoids many IDS and logging systems; highly Stealthy
+
+Disadvantages :
+- Requires raw access to network sockets and super-user privileges
+- Mostly effective against hosts using a BSD-derived TCP/IP stack (not effective against Microsofft Windows)
+
+NOTE : Inverse TCP Flag scanning is knows as FIN, URG, and PSH scanning on the flag set in the probe packet. if there is mno flag set, it is knows as NULL scanning. if only the FIN flag is set, it is known as FIN scanning, and if all of FIN, URG, and PSH are set, it is known as Xmas scanning
+
+
+Xmas Scan :
+
+Xmas scan is a type of inverse TCP scanning technique with the FIN, URG, and PUSH flags set to send a TCP frame to a remote device.
+If the target has closed the port, then you will receive a remote system reply with an RST.
+Attackers use the TCP Xmas scan to determine if ports are closed on the target machine via the RST packet.
+This scan only works when systems are compliant with RFC 793- based TCP/IP implementation.
+It will not work against any current version of Microsoft Windows.
+
+<image>
+
+BSD Networking Code 
+
+This method relies on the BSD networking code. Thus, you can use this only for UNIX hosts; it does not support Windows NT. If the user scans any Microsoft system, it will show that all the ports on the host are open.
+
+Transmitting Packets
+
+You can initialize all the flags when transmitting the packet to a remote host. If the target system accepts the packet and does not send any response, it means that the port is open. If the target system sends an RST flag, then it implies that the port is closed
+
+Advantages :
+- It avoids IDS and TCP three-way handshake
+
+Disadvantages :
+- It works on the UNIX platform only
+
+<image>
+
+
+TCP Maimon Scan :
+
+- TCP Maimon ScanThis scan technique is very similar to NULL, FIN, and Xmas scan, but the probe used here is FIN/ACK.
+- In most cases, to determine if the port is open or closed, the RST packet should be generated as a response to a probe request.
+- However, in many BSD systems, the port is open if the packet gets dropped in response to a probe..Nmap interprets a port as open|filtered when there is no response from the Maimon scan probe even after many retransmissions.
+- The port is closed if the probe gets a response as an RST packet.
+- The port is filtered when the ICMP unreachable error (type 3, code 1, 2, 3, 9, 10, or 13) is returned from the target host.
+
+
+<image>
+
+
+ACK Flag Probe Scan :
+
+- Attackers send TCP probe packets with the ACK flag set to a remote device and then analyze the header information (TTL and WINDOW field) of the received RST packets to find out if the port is open or closed.
+- Thus, such scanning is effective only on those OSs and platforms on which the BSD derives TCP/IP stacks.
+
+
+Categories of ACK flag probe scanning :
+
+- TTL-Based ACK Flag Probe scanning 
+
+In this scanning technique, you will first need to send ACK probe packets (several thousands) to different TCP ports and then analyze the TTL field value of the RST packets received
+If the TTL value of the RST packet on a particular port is less than the boundary value of 64, then that port is open
+
+<image>
+
+- Window-Based ACK Flag Probe scanning
+
+- In this scanning technique, you will first need to send ACK probe packets (several thousands) to different TCP ports and then analyze the window field value of the received RST packets. The user can use this scanning technique when all the ports return the same TTL value. 
+
+<image>
+
+- If the window value of the RST packet on a particular port is non-zero, then that port is open. 
+- which means that the port is open. When the returned RST value is zero, then the port is closed. If there is no response even after many retransmissions and an ICMP unreachable error (type 3, code 1, 2, 3, 9, 10, or 13) is returned, then the port is inferred to be a filtered port
+
+<image>
+
+Advantage :
+- This type of scan can evade IDS in most cases.
+
+Disadvantages :
+- It is extremely slow and can exploit only older OSs with vulnerable BSD-derived TCP/IP stacks
+
+Checking the Filtering System of Target Networks
+
+The ACK flag probe scanning technique helps to check the filtering systems of target networks by sending an ACK probe packet with a random sequence number and receiving an RST response from the target means that the port is not filtered (no firewall is present).
+
+<image>
+
+- IDLE/IPID Header Scan
+
+The IDLE/IPID header scan is a TCP port scan method used to send a spoofed source address to a computer to determine what services are available. It is used to determine whether a port is open or closed by sending a "SYN" (session establishment) packet and an "RST" (reset) packet. The OS increases the IPID for each packet sent, revealing the number of packets sent since the last probe.
+The attacker uses a "zombie" host to scan the remote host and identify open ports, displaying the zombie's IP if the remote host checks the scanning party's IP.
+
+
+IDLE Scan 
+
+- Step 1 : The first step in an idle scan is to determine an appropriate zombie. A zombie that incrementally assigns IPID packets on a global basis is an appropriate or idle zombie for performing idle scans. The shorter the time interval for request/response between the attacker-zombie and zombie-target, the faster is the scan 
+
+Choose a "Zombie" and Probe its Current IP Identification(IPID) Number
+
+In the first step, the SYN+ACK packet is sent to the zombie machine to probe its IPID number. Here, the SYN+ACK packet is sent to probe the IPID number and not to establish a TCP connection (three-way handshake)
+
+<image>
+
+As the zombie does not expect a SYN+ACK packet, it denies the connection by returning an RST packet. The RST packet sent by the zombie machine is analyzed to extract the IPID. As shown in figure, we assume that the zombie responds with IPID=31337. Furthermore, we assume that the IPID is X.
+
+- Step 2
+The attacker sends a SYN packet to the target machine on port 80, spoofing the IP address of the zombie.
+
+- Idle Scan: Step 2.1 (Open Port)
+
+If the port is open, the target sends the SYN+ACK packet to the zombie (as the IP address was spoofed) to proceed with the three-way handshake. Because the zombie did not expect a SYN+ACK packet from the target machine, it responds with an RST packet.
+
+<image>
+
+Because every IP packet has an IPID, which increases by one for every packet transmission, the zombie now uses the next availabe IPID, i.e., 31338 (X+1)
+
+- Idle Scan: Step 2.2 (Closed Port)
+
+Assume that the port on the target is closed. Subsequently, upon receiving the SYN packet from the attacker, the target response with an RST packet, and the zombie remains idle thereafter
+
+<image>
+
+- Step 3
+Now, follow step 1 again to probe the IPID number
+
+<image>
+
+An attacker can identify the open ports and services on a target machine by spoofing their IP address with a zombie's IP address. This is done by sending a SYN+ACK packet to the zombie, which responds with an RST packet containing the IPID. If the port on the target was open, the zombie responds with its next IPID, i.e., 31339 (X + 2). This increases the IPID by 2, indicating that the port was open.
+
+UDP Scan
+
+UDP Raw ICMP Port Unreachable Scanning
+
+- UDP port scanners use one ICMP to check for open or closed ports, and if any port returns an ICMP error, it will be closed.
+- This happens because open ports do not have to send an acknowledgement in response to a probe, and closed ports are not even required to send an error packetv 
+
+<image>
+
+UDP Packets
+
+- When you send a packet to a closed UDP port, most of the hosts send an ICMP_PORT_UNREACH error. Thus, you can determine whether a port is open if UDP packets or ICMP errors are not guaranteed to arrive.
+- UDP scanners must retransmit packets that appear lost to detect open ports, which is slow and limits the ICMP error message rate. Remote hosts require access to the raw ICMP socket to distinguish closed ports from unreachable ports.
+
+UDP RECVFROM() and WRITE () Scanning 
+
+- Although non-root users cannot read unreachable port errors directly, Linux informs you indirectly when it receives messages
+
+
+SCTP INIT Scan 
+
+- Stream Control Transport Protocol (SCTP) is a reliable message-oriented transport layer protocol. It is used as an alternative to the TCP and UDP protocols, as its characteristics are similar to those of TCP and UDP. SCTP is specifically used to perform multi-homing and multi-streaming activities. 
+- SCTP association comprises a four-way handshake method
+
+<image>
+
+The SCTP INIT scan is very similar to the TCP SYN scan; comparatively, it is also stealthy and unobtrusive, as it cannot complete SCTP associations, hence making the connection half-open.
+
+Attackers send INIT chunk to the target host. If the port is listening or open, it sends an acknowledgement as an INIT+ACK chunk.
+
+<image>
+
+if the target is inactive and it is not listening, then it sends an acknowledgement as an ABORT chunk
+
+<image>
+
+After several retransmissions, if there is no response, then the port is indicated as a filtered port. The port is also indicated as a filtered port if the target server responds with an ICMP unreachable 
+
+Advantages : 
+- INIT scan can clearly differentiate between various ports such as open, closed, and filtered states
+
+<image>
+
+
+SCTP COOKIE ECHO Scan :
+
+The SCTP COOKIE ECHO scan is an advanced type of scan where attackers send packets to the target and if the target sends back the ABORT chunk response, the port is considered closed.
+The COOKIE ECHO chunk is not blocked by non-stateful firewall rule sets as in the INIT scan. Only an advanced IDS can detect the SCTP COOKIE ECHO scan.
+
+<image>
+
+Advantages:
+- The port scan is not as conspicuous as the INIT scan.
+
+Disadvantages:
+- SCTP COOKIE ECHO scan cannot differentiate clearly between open and filtered ports, and it shows the output as open | filtered in both cases.
+
+
+SSDP and List Scan :
+
+- Simple Service Discovery Protocol (SSDP) is a network protocol that generally communicates with machines when querying them with routable IPv4 or IPv6 multicast addresses.
+- The SSDP service controls communication for the Universal Plug and Play (UPnP) feature.
+- The SSDP service will respond to a query sent over IPv4 or IPv6 broadcast addresses.
+- This response includes information about the UPnP feature associated with it.
+- The attacker uses SSDP scanning to detect UPnP vulnerabilities that may allow him/her to launch buffer overflow or DoS attacks.
+
+The UPnP SSDP M-SEARCH information discovery tool can be used to check if a machine is vulnerable to UPnP exploits.
+
+<image>
+
+List Scan :
+
+- List scans generate and print a list of IPs/Names without pinging or scanning, but reverse DNS resolution is still used.
+
+Advantages :
+- A list scan can perform a good sanity check
+- The list scan detects incorrectly defined IP addresses in the command line or in an option file. it primarily repairs the detected errors to run any "active" scan
+
+<image>
+
+IPv6 Scan :
+
+- IPv6 increases the size of the IP address space from 32 bits to 128 bits to support higher levels of the addressing hierarchy.
+- Traditional network scanning techniques are computationally less feasible because of the larger search space (64 bits of host address space, or 264 addresses) provided by IPv6 in a subnet.
+- Scanning the IPv6 network is more difficult and complex compared to IPv4.
+- Additionally, a number of scanning tools do not support ping sweeps on IPv6 networks.
+- At a conservative rate of one probe per second, such a scan would take about 5 billion years to complete.
+
+<image>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

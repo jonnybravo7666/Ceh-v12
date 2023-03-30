@@ -1,0 +1,262 @@
+Attackers should scan for active or inactive systems to learn more about their target, which helps them select strategies for attacking it.
+
+This module starts with an overview of network scanning and provides insights into various host discovery techniques that can be used to check for live and active systems. Furthermore, it discusses various port and service discovery techniques, operating system discovery techniques, and techniques for scanning beyond IDS and firewalls. Finally, it ends with an overview of drawing network diagrams.
+
+At the end of this module, you will be able to:
+- Describe the network scanning concepts
+- Use various scanning tools
+- Perform host discovery to check for live systems
+- Perform port and service discovery using various scanning techniques.
+- Perform operating system (OS) discovery
+- Scan beyond intrusion detection systems (IDS) and firewalls
+- Explain various network scanning countermeasures
+
+Network Scanning Concepts
+
+As already discussed, footprinting is the first phase of hacking, in which the attacker gains primary information about a potential target. He/she then uses this information in the scanning phase to gather more details about the target.
+
+Overview of Network Scanning
+- Network scanning refers to a set of procedures used for identifying hosts, ports, and services in a network
+- Network scanning is one of the components of intelligence gathering which can be used by an attacker to create a profile of the target organization
+- Scanning is used to discover exploitable communications channels, probe listeners, and track them to develop an attack strategy.
+
+Types of Scanning :
+
+- Port scanning is the process of checking the services running on a target computer to determine if they are in a listening state, which can allow unauthorized users to misconfigure systems or run software with vulnerabilities.
+- Network scanning identifies active hosts and IP addresses to attack or assess security.
+- Vulnerability scanning is a method for checking whether a system is exploitable by identifying its vulnerabilities. Vulnerability scanners use a scanning engine and catalog to identify vulnerabilities that can be fixed easily through updated security patches and a clean web document.
+
+Ports are the doors and windows of a system that an intruder uses to gain access, and the greater the number of open ports, the more vulnerable it is.
+
+Objectives of Network Scanning :
+- To discover live hosts, IP address, and open ports of live hosts
+- To discover operating systems and system architecture
+- To discover services running on hosts
+- To discover vulnerabilities in live hosts
+
+
+TCP Communication Flags : 
+
+- The TCP header contains various flags that control the transmission of data across a TCP connection.
+- Six TCP control flags manage the connection between hosts and give instructions to the system.
+- The size of each flag is 1 bit.
+- Four of these flags (SYN, ACK, FIN, and RST) govern the establishment, maintenance, and termination of a connection.
+- The other two flags (PSH and URG) provide instructions to the system
+- As there are six flags in the TCP Flags section, the size of this section is 6 bits.
+- When a flag value is set to "1," that flag is automatically turned on.
+
+The following are the TCP communication flags:
+
+- Synchronize or "SYN": It notifies the transmission of a new sequence number. This flag generally represents the establishment of a connection (three-way handshake) between two hosts.
+- Acknowledgement or "ACK": It confirms the receipt of the transmission and identifies the next expected sequence number. When the system successfully receives a packet, it sets the value of its flag to "1," thus implying that the receiver should pay attention to it.
+- Push or "PSH": When it is set to "1," it indicates that the sender has raised the push operation to the receiver; this implies that the remote system should inform the receiving application about the buffered data coming from the sender. The system raises the PSH flag at the start and end of data transfer and sets it on the last segment of a file to prevent buffer deadlocks.
+- Urgent or "URG": It instructs the system to process the data contained in packets as soon as possible. When the system sets the flag to "1," priority is given to processing the urgent data first and all the other data processing is stopped.
+- Finish or "FIN": It is set to "1" to announce that no more transmissions will be sent to the remote system and the connection established by the SYN flag is terminated.
+- Reset or "RST": When there is an error in the current connection, this flag is set to "1" and the connection is aborted in response to the error. Attackers use this flag to scan hosts and identify open ports.
+
+- SYN scanning mainly deals with three flags: SYN, ACK, and RST. You can use these three flags for gathering illegitimate information from servers during enumeration.
+
+- TCP/IP Communication
+
+TCP Connection establishment
+- TCP is Connection oriented, i.e., it prioritizes connection establishment before data transfer between applications. this connection between protocols is possible through the three-way handshake
+- The TCP protocol maintains stateful connections for all connection-oriented protocols, similar to telephone communication.
+
+Terminates the established TCP session
+- After completing all the data transfers through the established TCP connection, the sender sends the connection termination request to the receiver through a FIN or RST packet.
+- Upon receiving the connection termination request, the receiver acknowledges the termination request by sending an ACK packet to the sender and finally sends its own FIN packet.
+- Then, the system terminates the established connection.
+
+- Host Discovery :
+
+- Scanning is the process of gathering information about systems that are "alive" and responding on the network, and host discovery is the primary task to identify open ports and services.
+- Host discovery is the first step in network scanning, using ping scan techniques to detect live hosts/systems.
+
+- Host Discovery Techniques :
+
+Host discovery techniques can be adopted to discover the active/live hosts in the network. As an ethical hacker, you must be aware of the various types of host discovery techniques. Some host discovery techniques are listed below:
+
+  - ARP Ping Scan
+  - UDP Ping Scan
+  - ICMP Ping Scan
+    - ICMP ECHO Ping
+	- ICMP ECHO Ping Sweep
+    - ICMP Timestamp PIng
+    - ICMP Address Mask Ping 
+  - TCP Ping Scan
+    - TCP SYN Ping
+    - TCP ACK Ping
+  - IP Protocol Scan
+
+
+
+Port and Service Discovery 
+
+Port and Service Discovery is the next step in network scanning, which involves checking open ports and services in live systems. It is used by administrators to verify security policies and attackers to identify open ports and running services.
+
+List of common Ports and Services
+
+
+
+Port Scanning Techniques
+
+Port scanning techniques are further categorized as described below. this categorization is based on the type pf protocol used for communication in the network
+
+TCP Scanning:
+
+Open TCP Scanning Methods
+  - TCP Connect/Full-open Scan
+Stealth TCp Scanning Methods
+  - Half-open Scan
+  - Inverse TCP Flag Scan 
+    - Xmas Scan
+    - FIN Scan
+    - Null Scan
+    - Maimon Scan 
+  - ACK Flag Probe Scan
+    - TTL-Based Scan
+    - Window-Based Scan
+Third Party and Spoofed TCP Scanning Methods
+  - IDLE/IP ID Header Scan
+
+
+UDP Scanning :
+  - UDP Scanning 
+
+SCTP SCanning:
+  - SCTP INIt Scanning
+  - SCTP COOKIE/ECHO Scanning
+
+SSDP Scanning :
+  - SSDP and List Scanning
+
+IPv6 Scanning :
+  - IPv6 Scanning
+
+Service Version Discovery  :
+
+- Every port is assigned a specific service, and every service has its own version.
+- Some versions of the protocols are insecure, and they can allow attackers to compromise the machine by exploiting this vulnerability.
+- Service version detection helps attackers to obtain information about the running services and their versions on a target system.
+- By obtaining accurate service version numbers, an attacker can determine which exploits the target system is vulnerable to.
+- The version detection technique is nothing but examination of the TCP and UDP ports.
+
+
+Nmap Scan Time Reduction Techniques :
+
+In Nmap, Performance and accuracy can be achieved by reducing the scan timing
+
+1. Omit Non-critical Tests
+2. Optimize Timing Parameters
+3. separate and Optimize UDP Scans
+4. Upgrade Nmap
+5. Execute Concurrent Nmap Instances
+6. Scan from a favorable Network Location
+7. Increase Available bandwidth and CPU Time 
+
+
+OS Discovery (Banner Grabbing/OS Fingerprinting)
+
+- OS Discovery/Banner GrabbingBanner grabbing, or "OS fingerprinting," is a method used to determine the OS that is running on a remote target system.
+- The attacker can then formulate an attack strategy based on the OS of the target system.
+- There are two methods for banner grabbing: spotting the banner while trying to connect to a service, such as an FTP site, and downloading the binary file/bin/is to check the system architecture.
+- A more advanced fingerprinting technique depends on stack querying, which transfers the packets to the network host and evaluates them by the reply.
+- ICMP response analysis is another method used to fingerprint an OS.
+
+Two types of banner grabbing techniques are described below:
+
+- Active Banner Grabbing :
+Active banner grabbing involves sending malformed packets to remote hosts and comparing their responses with a database to determine an OS fingerprint.
+
+For instance, the scanning utility Nmap uses a series of nine tests to determine an OS fingerprint or banner grabbing.
+
+- Passive Banner Grabbing
+
+Passive fingerprinting captures packets from the target host via sniffing to study telltale signs that can reveal an OS.
+
+Passive banner grabbing includes:
+
+Banner grabbing from error messages: Error messages provide information, such as type of server, type of OS, and SSL tools used by the target remote system.
+
+Sniffing the network traffic: Capturing and analyzing packets from the target enables an attacker to determine the OS used by the remote system.
+
+Banner grabbing from page extensions: Looking for an extension in the URL may help in determining the application version. For example, .aspx => IIS server and Windows platform.
+
+The four areas that typically determine the OS are given below:
+
+- TTL (time to live) of the packets: What does the OS sets as the Time To Live on the outbound packet?
+- Window Size: What is the Window size set by the OS?
+- Whether the DF (Don't Fragment) bit is set: Does the OS set the DF bit?
+- TOS (Type of Service): Does the OS set the TOS, and if so, what setting is it?
+
+Passive fingerprinting is neither fully accurate nor limited to these four signatures. However, one can improve its accuracy by looking at several signatures and combining the information.
+
+
+Why Banner Grabbing?
+- An attacker uses banner grabbing to identify the OS used on the target host and thus detemine the system vilnerabilities and exploits that might work on that system to carry out further attacks.
+
+How to Identify Target System OS
+
+- Attackers can identify the OS running on the target machine by looking at the Time To Live(TTL) and TCP windows size in the IP header of the first packet in a TCP session
+- Sniff/capture the response generated from the target machine using packet-sniffing tools like Wireshark and observe the TTL and TCP windows size fields
+
+
+Tools 
+
+Scanning Beyond IDS and Firewall :
+
+- Intrusion detection systems (IDS) and firewalls are security mechanisms intended to prevent an attacker from accessing a network. However, even IDS and firewalls have some security limitations. Attackers try to launch attacks to exploit these limitations.
+
+IDS/Firewall Evasion Techniques :
+
+- Although firewalls and IDS can prevent malicious traffic (packets) from entering a network, attackers can send intended packets to the target that evade the IDS/firewall by implementing the following techniques:
+
+Packet Fragmentation
+Source Routing
+Source Port Manipulation
+IP Address Decoy
+IP Address Spoofing
+MAC Address Spoofing
+Creating Custom Packets
+Randomizing Host Order
+Sending Bad Checksums
+Proxy Servers
+Anonymizers
+
+
+Network Scanning Countermeasures :
+
+Ethical hacking requires the ethical hacker to adopt countermeasures to protect against network scanning attacks, which is essential for knowing security loopholes and protecting against real hackers.
+
+
+Port Scanning Countermeasures :
+
+- Configure firewall and IDS rules to detect and block probes
+- Run port scanning tools against hosts on the network 2 to determine whether the firewall properly detects port scanning activity
+- Ensure that the mechanisms used for routing and filtering at the routers and firewalls, respectively, cannot be bypassed using a particular source port or source routing methods
+- Ensure that the router, IDS, and firewall firmware are updated to their latest releases/versions
+- Use a custom rule set to lock down the network and block unwanted ports at the firewall
+- Filter all ICMP messages (i.e., inbound ICMP 6 message types and outbound ICMP type 3 unreachable messages) at the firewalls and routers
+- Perform TCP and UDP scanning along with ICMP probes against your organization's IP address space to check the network configuration and its available ports
+- Ensure that anti-scanning and anti-spoofing rules are properly configured
+
+
+Banner Grabbing Countermeasures :
+
+Disabling or Changing Banner                             
+
+- Display false banners to mislead or deceive attackers
+- Turn off unnecessary services on the network host to limit the disclosure of information
+- Use server masking tools to disable or change banner information
+- For Apache 2.x with the mod_headers module, use a directive in the httpd.conf file to change the banner information header and set the server as New Server Name
+- Alternatively, change the ServerSignature line to ServerSignature off in the httpd.conf file
+
+Hiding File Extensions from Web Pages
+
+- File extensions reveal information about the underlying server technology that an attacker can utilize to launch attacks
+- Hide file extensions to mask the web technologies
+- Replace application mappings such as.asp with .htm or foo, etc. to disguise the identities of servers
+- Apache users can use mod negotiation directives
+- IIS users can use tools such as PageXchanger to manage the file extensions
+- It is preferable to not use file extensions at all
+
